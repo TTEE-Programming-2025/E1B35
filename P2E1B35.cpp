@@ -88,23 +88,23 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
             	printf("錯誤!\n請輸入 a~n 的字元：");
                 scanf(" %c",&ch);
 			}
-            if (ch>='a'&&ch<='n') {
-                int lines=ch-'a'+ 1; // 計算ch是第幾個字母    
+            
+            int lines=ch-'a'+ 1; // 計算ch是第幾個字母    
 
-                for (int i=1;i<=lines;i++) { //運行幾次(幾行) 
-                    for (int s=1;s<=lines-i;s++) { // 印出 lines-i 幾個空格讓字母靠右對齊 
-                        printf("  ");
-                    }
-                   
-                    for (char c=ch-i+1;c<=ch;c++) { // 從 ch-i+1 到 ch 依序印出
-                        printf("%c ",c);
-                    }
-                    printf("\n");//印完該行後換行  
+            for (int i=1;i<=lines;i++) { //運行幾次(幾行) 
+                for (int s=1;s<=lines-i;s++) { // 印出 lines-i 幾個空格讓字母靠右對齊 
+                    printf("  ");
                 }
-            } 
+                   
+                for (char c=ch-i+1;c<=ch;c++) { // 從 ch-i+1 到 ch 依序印出
+                    printf("%c ",c);
+                }
+                printf("\n");//印完該行後換行  
+            }
             printf("\n按任意鍵返回主選單 . . . ");
             getch();
         }
+        //(4) 乘法表  
         else if (choice=='b'||choice=='B') { // 當輸入 b 或 B 時 
             int n;
             printf("請輸入 1~9 的整數：");
@@ -114,16 +114,35 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
             	printf("錯誤!\n請輸入 1~9 的整數：");
                 scanf(" %d",&n);
             }
-            if (n>=1&&n<=9) {
-                for (int i=1;i<=n;i++) { //決定行值 
-                    for (int j=1;j<=n;j++) { //決定列值  
-                        printf("%2d*%d=%3d  ",j,i,i*j);
-                    } 
-                    printf("\n");
-                }
+            
+            for (int i=1;i<=n;i++) { //決定列值 
+                for (int j=1;j<=n;j++) { //決定行值  
+                    printf("%2d*%d=%3d  ",j,i,i*j);
+                } 
+                printf("\n");
             }
             printf("\n按任意鍵返回主選單...\n");
             getch();
+        }
+        // (5) 結束確認 
+        else if (choice=='c'||choice=='C') { // 當輸入 c 或 C 時 
+            char yn;
+            printf("Continue? (y/n)：");
+            scanf(" %c",&yn);
+            
+            while(yn!='y'&&yn!='n'){
+            	printf("錯誤!\n請輸入 y 或 n\n\nContinue? (y/n)：");
+            	fflush(stdin);
+                scanf(" %c",&yn);
+            }
+			 
+            if (yn=='n'||yn=='N') { // 當輸入 n 或 N 時 
+                printf("程式結束!\n");
+                break;
+            } 
+			else if (yn=='y'||yn=='Y') { // 當輸入 y 或 Y 時 
+                continue;
+            }
         }
     } 
     return 0;
