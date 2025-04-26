@@ -35,7 +35,7 @@ printf("$$                                                  $$\n");
 printf("$$                                                  $$\n");
 printf("$$                     程式設計                     $$\n");
 printf("$$                E1B35郭宥宏的作業2                $$\n");
-printf("$$                    2025/04/25                    $$\n");
+printf("$$                    2025/04/26                    $$\n");
 printf("$$                                                  $$\n");
 printf("$$                     {\\__/}                       $$\n");
 printf("$$                     ( ‧-‧)                       $$\n");
@@ -84,6 +84,10 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
             printf("請輸入 a~n 的字元：");
             scanf(" %c",&ch);
             
+            while(ch<'a'||ch>'n'){
+            	printf("錯誤!\n請輸入 a~n 的字元：");
+                scanf(" %c",&ch);
+			}
             if (ch>='a'&&ch<='n') {
                 int lines=ch-'a'+ 1; // 計算ch是第幾個字母    
 
@@ -97,11 +101,28 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
                     }
                     printf("\n");//印完該行後換行  
                 }
-            } else {
-                printf("錯誤：請輸入 a~n 的小寫字母！\n");
-            }
-        
+            } 
             printf("\n按任意鍵返回主選單 . . . ");
+            getch();
+        }
+        else if (choice=='b'||choice=='B') { // 當輸入 b 或 B 時 
+            int n;
+            printf("請輸入 1~9 的整數：");
+            scanf("%d", &n);
+            
+            while(n<1||n>9){
+            	printf("錯誤!\n請輸入 1~9 的整數：");
+                scanf(" %d",&n);
+            }
+            if (n>=1&&n<=9) {
+                for (int i=1;i<=n;i++) { //決定行值 
+                    for (int j=1;j<=n;j++) { //決定列值  
+                        printf("%2d*%d=%3d  ",j,i,i*j);
+                    } 
+                    printf("\n");
+                }
+            }
+            printf("\n按任意鍵返回主選單...\n");
             getch();
         }
     } 
