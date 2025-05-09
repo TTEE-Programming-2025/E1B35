@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include <time.h>
 int main(){
-    while(1){ 
     srand( time(NULL) );
-    
-  	char seat[9][9];
 
-        for(int i=0;i<9;i++){ //將座位變成空格  
+    char seat[9][9];
+
+        for(int i=0;i<9;i++){ //將座位變成'-'  
 		    for(int j=0;j<9;j++){
 			    seat[i][j]='-';
 		    }
@@ -21,16 +21,27 @@ int main(){
             seat[x][y] = '*';
             count++;
         }
-    
-    }
+    } 
 	
-	for(int i=0;i<9;i++){ //印座位表  
-		for(int j=0;j<9;j++){
-			printf("%c ",seat[i][j]);
-		}
-		printf("\n");
-	}
-    system("pause");
+	    
+    while(1){ 
     system("cls");
+    char choice;
+    printf("請輸入效果:"); 
+	scanf(" %c",&choice);
+	
+	
+	if (choice=='a'||choice=='A') { // 當輸入 a 或 A 時 
+        printf("\\ 1 2 3 4 5 6 7 8 9\n");
+		for(int i=0;i<9;i++){ //印座位表  
+		    printf("%d ",9-i);
+			for(int j=0;j<9;j++){
+			    printf("%c ",seat[i][j]);
+		    }
+		    printf("\n");
+	    }
+            printf("\n按任意鍵返回主選單...\n");
+            getch();
+        } 
     } 
 }
