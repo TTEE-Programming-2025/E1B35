@@ -93,7 +93,26 @@ int main(){
                 } 
             }
             if (n==4) {
-                printf("¼È®É\n");
+                count=0;
+                while(count!=1){
+                    int x = rand() % 8;
+                    int y = rand() % 8;
+                    if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'&&seat[x][y+3] != '*'){
+                        seat[x][y] = '@';
+                        seat[x][y+1] = '@';
+                        seat[x][y+2] = '@';
+                        seat[x][y+3] = '@';
+                        count++;
+                    }
+                    else if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x+1][y] != '*'&&seat[x+1][y] != '*'){
+                        seat[x][y] = '@';
+                        seat[x][y+1] = '@';
+                        seat[x+1][y] = '@';
+                        seat[x+1][y+1] = '@';
+                        count++;
+                    }
+                    
+                } 
             }
             printf("\\ 1 2 3 4 5 6 7 8 9\n");
 	       	for(int i=0;i<9;i++){ //¦L®y¦ìªí  
