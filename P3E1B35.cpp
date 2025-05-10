@@ -80,7 +80,17 @@ int main(){
                 } 
             }
             if (n==3) {
-                printf("¼È®É\n");
+                count=0;
+                while(count!=1){
+                    int x = rand() % 7;
+                    int y = rand() % 7;
+                    if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'){
+                        seat[x][y] = '@';
+                        seat[x][y+1] = '@';
+                        seat[x][y+2] = '@';
+                        count++;
+                    }
+                } 
             }
             if (n==4) {
                 printf("¼È®É\n");
