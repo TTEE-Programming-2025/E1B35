@@ -162,6 +162,42 @@ int main(){
             printf("\n按任意鍵返回主選單...\n");
             getch();
         }
+        
+        else if (choice=='c'||choice=='C') { // 當輸入 b 或 B 時 
+            int p=0,q=0;
+            printf("請輸入座位（先輸入列再輸入行）：");
+            scanf(" %d-%d", &p,&q);
+            
+            while(seat[9-p][q-1] != '-'){ // 重複輸入直到是 1~4 
+            	printf("錯誤!（格式錯誤或重位）\n\n請輸入座位（先輸入列再輸入行）：");
+                scanf(" %d", &p);
+                scanf(" %d", &q);
+            }
+            printf("\n");
+
+            seat[9-p][q-1]='@';
+            
+            printf("\\ 1 2 3 4 5 6 7 8 9\n");
+	       	for(int i=0;i<9;i++){ //印座位表  
+		        printf("%d ",9-i);
+			    for(int j=0;j<9;j++){
+			        printf("%c ",seat[i][j]);
+		        }
+		    printf("\n");
+	        } 
+	        
+	        
+            for(int i=0;i<9;i++){ //將 @ 換成 *   
+		        for(int j=0;j<9;j++){
+			        if(seat[i][j]=='@'){
+				        seat[i][j] = '*';
+			        }
+		        }
+	        }
+	        
+            printf("\n按任意鍵返回主選單...\n");
+            getch();
+        }
     } 
     
 }
