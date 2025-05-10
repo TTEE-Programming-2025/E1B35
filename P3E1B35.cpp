@@ -5,14 +5,8 @@
 int main(){
     srand( time(NULL) );
 
-    char seat[9][13];
+    char seat[9][9];
 
-        for(int i=0;i<9;i++){ //將座位變成'*'  
-		    for(int j=0;j<13;j++){
-			    seat[i][j]='*';
-		    }
-	    } 
-	    
 		for(int i=0;i<9;i++){ //將座位變成'-'  
 		    for(int j=0;j<9;j++){
 			    seat[i][j]='-';
@@ -101,23 +95,31 @@ int main(){
             if (n==4) {
                 count=0;
                 while(count!=1){
-                    int x = rand() % 8;
-                    int y = rand() % 8;
-                    if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'&&seat[x][y+3] != '*'){
-                        seat[x][y] = '@';
-                        seat[x][y+1] = '@';
-                        seat[x][y+2] = '@';
-                        seat[x][y+3] = '@';
-                        count++;
-                    }
-                    else if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x+1][y] != '*'&&seat[x+1][y] != '*'){
-                        seat[x][y] = '@';
-                        seat[x][y+1] = '@';
-                        seat[x+1][y] = '@';
-                        seat[x+1][y+1] = '@';
-                        count++;
-                    }
-                    
+                	int set = rand() % 2;
+                	
+                	if(set==0){
+                		int x = rand() % 6;
+                        int y = rand() % 6;
+                        if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'&&seat[x][y+3] != '*'){
+                            seat[x][y] = '@';
+                            seat[x][y+1] = '@';
+                            seat[x][y+2] = '@';
+                            seat[x][y+3] = '@';
+                            count++;
+                        }
+					}
+					
+					if(set==1){
+                		int x = rand() % 8;
+                        int y = rand() % 8;
+                        if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x+1][y] != '*'&&seat[x+1][y] != '*'){
+                            seat[x][y] = '@';
+                            seat[x][y+1] = '@';
+                            seat[x+1][y] = '@';
+                            seat[x+1][y+1] = '@';
+                            count++;
+                        }
+					}  
                 } 
             }
             printf("\\ 1 2 3 4 5 6 7 8 9\n");
