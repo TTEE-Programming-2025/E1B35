@@ -5,9 +5,15 @@
 int main(){
     srand( time(NULL) );
 
-    char seat[9][9];
+    char seat[9][13];
 
-        for(int i=0;i<9;i++){ //將座位變成'-'  
+        for(int i=0;i<9;i++){ //將座位變成'*'  
+		    for(int j=0;j<13;j++){
+			    seat[i][j]='*';
+		    }
+	    } 
+	    
+		for(int i=0;i<9;i++){ //將座位變成'-'  
 		    for(int j=0;j<9;j++){
 			    seat[i][j]='-';
 		    }
