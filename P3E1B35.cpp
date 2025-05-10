@@ -68,7 +68,16 @@ int main(){
                 } 
             }
             if (n==2) {
-                printf("¼È®É\n");
+                count=0;
+                while(count!=1){
+                    int x = rand() % 8;
+                    int y = rand() % 8;
+                    if(seat[x][y] != '*'&&seat[x][y+1] != '*'){
+                        seat[x][y] = '@';
+                        seat[x][y+1] = '@';
+                        count++;
+                    }
+                } 
             }
             if (n==3) {
                 printf("¼È®É\n");
