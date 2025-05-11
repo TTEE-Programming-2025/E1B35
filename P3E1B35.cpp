@@ -5,6 +5,67 @@
 #define enter 13 
 int main(){
     srand( time(NULL) );
+    
+    int input=0;             // 使用者輸入的密碼  
+    int attempts=0;          // 輸入次數計數  
+    int success=0;           // 是否登入成功  
+    
+    //(1) 個人風格  
+printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+printf("$$                                                  $$\n");
+printf("$$                            ______________________$$\n");
+printf("$$                        ___/                      $$\n");
+printf("$$                     __/                          $$\n");
+printf("$$                    /                             $$\n");
+printf("$$                   |                              $$\n");
+printf("$$                  /                               $$\n");
+printf("$$                 /         __         __          $$\n");
+printf("$$                /         /  \\       /  \\         $$\n");
+printf("$$               /          \\__/       \\__/         $$\n");
+printf("$$               |                                  $$\n");
+printf("$$    ___________|___           ________            $$\n");
+printf("$$    |             |\\          \\      /            $$\n");
+printf("$$    \\_____________/ \\          \\____/             $$\n");
+printf("$$    \\             \\  \\                            $$\n");
+printf("$$     \\   /     /   \\  \\                           $$\n");
+printf("$$      \\ /      /____\\__\\                     _____$$\n");
+printf("$$       /       /_____  \\____            ____/     $$\n");
+printf("$$      /________/_____\\      \\__________/          $$\n");
+printf("$$                                                  $$\n");
+printf("$$                    薩卡班甲魚                    $$\n"); 
+printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+printf("$$                                                  $$\n");
+printf("$$                                                  $$\n");
+printf("$$                     程式設計                     $$\n");
+printf("$$                E1B35郭宥宏的作業3                $$\n");
+printf("$$                    2025/05/11                    $$\n");
+printf("$$                                                  $$\n");
+printf("$$                     {\\__/}                       $$\n");
+printf("$$                     ( ‧-‧)                       $$\n");
+printf("$$                   c /> 35<\\                      $$\n");
+printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+
+    // 密碼驗證，最多三次機會
+    while (attempts<3) {
+        printf("第 %d 次輸入(密碼預設為2025)：",attempts+1);
+        scanf("%d",&input);
+
+        if (input==2025) { // 如果輸入2025  
+            printf("密碼正確，登入完成！\n\n"); // 印出密碼正確  
+            success=1; // 使後續可以依據success判斷有沒有輸入正確  
+            break; // 跳出迴圈  
+        } 
+		else {
+            printf("密碼錯誤。\n");
+        }
+        attempts++; // 增加錯誤計數  
+    }
+
+    if (success==0) { // 判斷有沒有輸入正確  
+        printf("連續錯誤三次，程式結束。\n");
+        return 0;
+    }
+    system("pause"); // 讓使用者確定輸入正確後再到主選單  
 
     char seat[9][9];
 
@@ -26,10 +87,20 @@ int main(){
 	
 	    
     while(1){ 
-    system("cls");
-    char choice;
-    printf("請輸入效果:"); 
-	scanf(" %c",&choice);
+        system("cls");
+    
+        printf("$$$$$$$[Booking System]$$$$$$$$\n");
+        printf("$$                           $$\n");
+        printf("$$ a. Available seats        $$\n");
+        printf("$$ b. Arrange for you        $$\n");
+        printf("$$ c. Choose by yourself     $$\n");
+        printf("$$ d. Exit                   $$\n");
+        printf("$$                           $$\n");
+        printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+        char choice;
+        printf("請輸入效果:"); 
+	    scanf(" %c",&choice);
+	    system("cls");
 	
 	
 	if (choice=='a'||choice=='A') { // 當輸入 a 或 A 時 
