@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
+#define enter 13 
 int main(){
     srand( time(NULL) );
 
@@ -163,27 +164,123 @@ int main(){
             getch();
         }
         
-        else if (choice=='c'||choice=='C') { // 當輸入 b 或 B 時 
-            int p=0,q=0;
-            printf("請輸入座位（先輸入列再輸入行）：");
-            scanf(" %d-%d", &p,&q);
-            
-            while(seat[9-p][q-1] != '-'){ // 重複輸入直到是 1~4 
-            	printf("錯誤!（格式錯誤或重位）\n\n請輸入座位（先輸入列再輸入行）：");
-                scanf(" %d", &p);
-                scanf(" %d", &q);
-            }
-            printf("\n");
-
-            seat[9-p][q-1]='@';
-            
+        else if (choice=='c'||choice=='C') { // 當輸入 c 或 C 時 
+            char a[71],b[71],c[71],d[71];
+	        int check=-1;
+	        
+			while (check==-1){
+	        	int numa=0,numb=0,numc=0,numd=0;
+				check=0;
+	        	
+	        	for (int i=0;i<71;i++){ //初始化 a 陣列  
+	                a[i]=0;
+	            } 
+	        	for (int i=0;i<71;i++){ //初始化 b 陣列   
+	                b[i]=0;
+	            } 
+	            for (int i=0;i<71;i++){ //初始化 c 陣列   
+	                c[i]=0;
+	            } 
+	            for (int i=0;i<71;i++){ //初始化 d 陣列   
+	                d[i]=0;
+	            } 
+	        	printf("\\ 1 2 3 4 5 6 7 8 9\n");
+	       	    for(int i=0;i<9;i++){ //印座位表給使用者挑選座位   
+		            printf("%d ",9-i);
+			        for(int j=0;j<9;j++){
+			            printf("%c ",seat[i][j]);
+		            }
+		            printf("\n");
+	            } 
+	            
+                printf("請輸入座位（先輸入列再輸入行，例如:8-7,6-9...）：");
+                for (int i=0;;i++){ 
+	
+	                a[i]=getche();
+	                numa++;
+	                if (a[i]==enter){
+		                numa--;
+	     	            break;		
+    	            }
+	
+	                b[i]=getche();
+	                numb++;
+	                if (b[i]==enter){
+		                numb--;
+		                break;		
+            	    }
+	
+	                c[i]=getche();
+	                numc++;
+	                if (c[i]==enter){
+		                numc--;
+		                break;
+    	            }
+	
+	                d[i]=getche();
+    	            numd++;
+	                if (d[i]==enter){
+		                numd--;
+		                break;
+	                }
+	            }
+                printf("\n");
+	            for (int i=0;i<numa;i++){ 
+	                if (a[i]<'1'||a[i]>'9'){
+	    	            check++;
+		            }
+	            } 
+	            for (int i=0;i<numb;i++){ 
+	                if (b[i]!='-'){
+	    	            check++;
+		            }
+          	    } 
+	            for (int i=0;i<numc;i++){ 
+	                if (c[i]<'1'||c[i]>'9'){
+	    	            check++;
+		            }
+                } 
+	            for (int i=0;i<numd-1;i++){ 
+     	            if (d[i]!=','){
+	    	            check++;
+		            }
+	            }
+	            
+	            if (check!=0||numa!=numb||numa!=numc||numa!=numd+1){
+		            printf("錯誤! 格式錯誤\n");
+		            check=-1;
+		            system("pause");
+		            system("cls");
+		            continue;
+	            }
+	            for (int i=0;i<numa;i++){ 
+	                if(seat[9-a[i]+'0'][c[i]-1-'0'] != '-'){
+	                	printf("錯誤! 重位\n");
+		                check=-1;
+		                for(int i=0;i<9;i++){ //將 @ 換回 -    
+		                    for(int j=0;j<9;j++){
+			                    if(seat[i][j]=='@'){
+				                    seat[i][j] = '-';
+			                    }
+		                    }
+	                    }
+		                system("pause");
+		                system("cls");
+		                break;
+					}
+		            else if(seat[9-a[i]+'0'][c[i]-1-'0'] == '-'){
+	                	seat[9-a[i]+'0'][c[i]-1-'0']='@';
+					} 
+	            } 
+	        }
+            system("cls");
             printf("\\ 1 2 3 4 5 6 7 8 9\n");
 	       	for(int i=0;i<9;i++){ //印座位表  
 		        printf("%d ",9-i);
 			    for(int j=0;j<9;j++){
 			        printf("%c ",seat[i][j]);
 		        }
-		    printf("\n");
+		        printf("\n");
 	        } 
 	        
 	        
@@ -201,3 +298,4 @@ int main(){
     } 
     
 }
+
