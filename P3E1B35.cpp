@@ -295,6 +295,22 @@ int main(){
             printf("\n按任意鍵返回主選單...\n");
             getch();
         }
+        else if (choice=='d'||choice=='D') { // 當輸入 c 或 C 時 
+            char yn;
+            printf("Continue? (y/n)：");
+            scanf(" %c",&yn);
+            
+            while(yn!='y'&&yn!='n'){ // 重複輸入直到是 y 或 n 
+            	printf("錯誤!\n請輸入 y 或 n\n\nContinue? (y/n)：");
+            	fflush(stdin);
+                scanf(" %c",&yn);
+            }
+			 
+            if (yn=='n'||yn=='N') { // 當輸入 n 或 N 時 
+                printf("程式結束!\n");
+                break; // 跳出無窮迴圈  
+            } 
+        }
     } 
     
 }
