@@ -4,13 +4,13 @@
 #include <time.h>
 #define enter 13 
 int main(){
-    srand( time(NULL) );
+    srand( time(NULL) );     // Generate a different random number sequence each time the program runs.  
     
-    int input=0;             // 使用者輸入的密碼  
-    int attempts=0;          // 輸入次數計數  
-    int success=0;           // 是否登入成功  
+    int input=0;             // The password entered by the user. 
+    int attempts=0;          // Input attempt counter. 
+    int success=0;           // Whether the login was successful. 
     
-    //(1) 個人風格  
+    //(1) A personalized interface.  
 printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 printf("$$                                                  $$\n");
 printf("$$                            ______________________$$\n");
@@ -32,51 +32,55 @@ printf("$$      \\ /      /____\\__\\                     _____$$\n");
 printf("$$       /       /_____  \\____            ____/     $$\n");
 printf("$$      /________/_____\\      \\__________/          $$\n");
 printf("$$                                                  $$\n");
-printf("$$                    薩卡班甲魚                    $$\n"); 
+printf("$$                  Sacabambaspis                   $$\n"); 
 printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 printf("$$                                                  $$\n");
 printf("$$                                                  $$\n");
-printf("$$                     程式設計                     $$\n");
-printf("$$                E1B35郭宥宏的作業3                $$\n");
-printf("$$                    2025/05/11                    $$\n");
+printf("$$                   programming                    $$\n");
+printf("$$            E1B35郭宥宏's howework 3              $$\n");
+printf("$$                   2025/05/13                     $$\n");
 printf("$$                                                  $$\n");
 printf("$$                     {\\__/}                       $$\n");
 printf("$$                     ( ‧-‧)                       $$\n");
 printf("$$                   c /> 35<\\                      $$\n");
 printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 
-    // 密碼驗證，最多三次機會
+const char *str[]={"st","nd","rd"};
+
+    // Password verification with a maximum of three attempts.
     while (attempts<3) {
-        printf("第 %d 次輸入(密碼預設為2025)：",attempts+1);
+        printf("  %d%s input (default password is 2025)：",attempts+1,str[attempts]);
         scanf("%d",&input);
 
-        if (input==2025) { // 如果輸入2025  
-            printf("密碼正確，登入完成！\n\n"); // 印出密碼正確  
-            success=1; // 使後續可以依據success判斷有沒有輸入正確  
-            break; // 跳出迴圈  
+        if (input==2025) { // If the input is 2025.
+            printf("  Correct password, login successful!\n\n"); // Print "Password is correct." 
+            success=1; // Allow subsequent operations to determine whether the input was correct based on the variable "success".
+            break; // Exit the loop. 
         } 
 		else {
-            printf("密碼錯誤。\n");
+            printf("  Incorrect password.\n\n");
         }
-        attempts++; // 增加錯誤計數  
+        attempts++; // Increase the error count. 
     }
 
-    if (success==0) { // 判斷有沒有輸入正確  
-        printf("連續錯誤三次，程式結束。\n");
+    if (success==0) { // Check whether the input is correct.
+        printf("  Three consecutive incorrect attempts. Program terminated.\n");
         return 0;
     }
-    system("pause"); // 讓使用者確定輸入正確後再到主選單  
+    printf("\n  Press any key to enter the main menu . . . "); // Let the user confirm the correct input before proceeding to the main menu. 
+    getch();
+
 
     char seat[9][9];
 
-		for(int i=0;i<9;i++){ //將座位變成'-'  
+		for(int i=0;i<9;i++){ // Set the seats to '-' 
 		    for(int j=0;j<9;j++){
 			    seat[i][j]='-';
 		    }
 	    }
 	    
 	    int count = 0;
-        while(count < 10){ //生成10個已選位置 
+        while(count < 10){ // Generate 10 pre-selected seats.
         int x = rand() % 9;
         int y = rand() % 9;
         if(seat[x][y] != '*'){
@@ -85,9 +89,9 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
         }
     } 
 	
-	    
-    while(1){ 
-        system("cls");
+	//(2) Main menu.
+    while(1){ // Infinite loop so program can return to the main menu after executing.  
+        system("cls"); // Clear screen.  
     
         printf("$$$$$$$[Booking System]$$$$$$$$\n");
         printf("$$                           $$\n");
@@ -98,51 +102,50 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
         printf("$$                           $$\n");
         printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
         char choice;
-        printf("請輸入效果:"); 
-	    scanf(" %c",&choice);
+        printf("Enter your choice:"); 
+	    scanf(" %c",&choice); // Enter your choice.  
 	    system("cls");
 	
-	
-	if (choice=='a'||choice=='A') { // 當輸入 a 或 A 時 
-        printf("\\ 1 2 3 4 5 6 7 8 9\n");
-		for(int i=0;i<9;i++){ //印座位表  
-		    printf("%d ",9-i);
-			for(int j=0;j<9;j++){
-			    printf("%c ",seat[i][j]);
-		    }
-		    printf("\n");
-	    }
-            printf("\n按任意鍵返回主選單...\n");
+	    //(3) Print seat map.  
+	    if (choice=='a'||choice=='A') { // If user enters 'a' or 'A'  
+            printf("\\ 1 2 3 4 5 6 7 8 9\n"); // Print seat map.  
+		    for(int i=0;i<9;i++){
+		        printf("%d ",9-i);
+			    for(int j=0;j<9;j++){
+			        printf("%c ",seat[i][j]);
+		        }
+		        printf("\n");
+	        }
+            printf("\nPress any key to return to the main menu . . . ");
             getch();
-    } 
-    
-    else if (choice=='b'||choice=='B') { // 當輸入 b 或 B 時 
+        } 
+        //(4) Auto seat selection.  
+        else if (choice=='b'||choice=='B') { // If user enters 'b' or 'B'
             int n=0;
-            printf("請輸入需要幾個座位（1~4）：");
-            scanf("%d", &n);
+            printf("Enter number of seats needed（1~4）：");
+            scanf("%d", &n); // Enter number of seats needed.
             
-            while(n<1||n>4){ // 重複輸入直到是 1~4 
-            	printf("錯誤!\n\n請輸入 1~4 的整數：");
+            while(n<1||n>4){ // Repeat until the number is 1~4.
+            	printf("Error!\n\nPlease enter an integer is 1~4:");
                 scanf(" %d",&n);
             }
             printf("\n");
 
-            if (n==1) {
+            if (n==1) { // Enter 1 person.  
             	count=0;
-                while(count!=1){
+                while(count!=1){ /* Check if random position is available; repeat until successful selection. */ 
                     int x = rand() % 9;
                     int y = rand() % 9;
                     if(seat[x][y] != '*'){
                         seat[x][y] = '@';
-                        
                         count++;
                     }
                 } 
             }
-            if (n==2) {
+            if (n==2) { // Enter 2 person.
                 count=0;
-                while(count!=1){
-                    int x = rand() % 8;
+                while(count!=1){ /*  Check if a random seat and one adjacent seat in the same row are available; repeat until successful. */ 
+                    int x = rand() % 9;
                     int y = rand() % 8;
                     if(seat[x][y] != '*'&&seat[x][y+1] != '*'){
                         seat[x][y] = '@';
@@ -151,10 +154,10 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
                     }
                 } 
             }
-            if (n==3) {
+            if (n==3) { // Enter 3 person.
                 count=0;
-                while(count!=1){
-                    int x = rand() % 7;
+                while(count!=1){ /* Check if a random seat and two adjacent seats in the same row are available; repeat until successful. */ 
+                    int x = rand() % 9;
                     int y = rand() % 7;
                     if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'){
                         seat[x][y] = '@';
@@ -164,13 +167,13 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
                     }
                 } 
             }
-            if (n==4) {
+            if (n==4) { // Enter 4 person.
                 count=0;
                 while(count!=1){
-                	int set = rand() % 2;
+                	int set = rand() % 2; // Randomly choose from two seating layout options.
                 	
-                	if(set==0){
-                		int x = rand() % 6;
+                	if(set==0){ /* Check if a random seat and three adjacent seats in the same row are available; repeat until successful. */ 
+                		int x = rand() % 9;
                         int y = rand() % 6;
                         if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x][y+2] != '*'&&seat[x][y+3] != '*'){
                             seat[x][y] = '@';
@@ -181,7 +184,7 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
                         }
 					}
 					
-					if(set==1){
+					if(set==1){ /* Check if a random seat, one adjacent seat in the same row, and two seats in the next row are available; repeat until successful. */ 
                 		int x = rand() % 8;
                         int y = rand() % 8;
                         if(seat[x][y] != '*'&&seat[x][y+1] != '*'&&seat[x+1][y] != '*'&&seat[x+1][y] != '*'){
@@ -194,8 +197,8 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 					}  
                 } 
             }
-            printf("\\ 1 2 3 4 5 6 7 8 9\n");
-	       	for(int i=0;i<9;i++){ //印座位表  
+            printf("\\ 1 2 3 4 5 6 7 8 9\n"); // Print the seat map after new seats are added. 
+	       	for(int i=0;i<9;i++){
 		        printf("%d ",9-i);
 			    for(int j=0;j<9;j++){
 			        printf("%c ",seat[i][j]);
@@ -204,17 +207,17 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	        } 
 	        
 	        char yn;
-	        printf("你滿意嗎?(y/n):");
+	        printf("Are you satisfied? (y/n):");
 	        scanf(" %c",&yn);
             
-            while(yn!='y'&&yn!='n'){ // 重複輸入直到是 y 或 n 
-            	printf("錯誤!\n請輸入 y 或 n\n\n你滿意嗎?(y/n):");
+            while(yn!='y'&&yn!='n'){ // Repeat input until it is y or n.
+            	printf("Error!\nPlease enter y or n\n\nAre you satisfied? (y/n):");
             	fflush(stdin);
                 scanf(" %c",&yn);
             }
 			 
-            if (yn=='y'||yn=='Y') { // 當輸入 n 或 N 時 
-                for(int i=0;i<9;i++){ //將 @ 換成 *   
+            if (yn=='y'||yn=='Y') { // If user enters 'y' or 'Y'
+                for(int i=0;i<9;i++){ // Convert '@' to '*'.   
 		            for(int j=0;j<9;j++){
 			            if(seat[i][j]=='@'){
 				            seat[i][j] = '*';
@@ -222,8 +225,8 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 		            }
 	            }
 	        }
-	        if (yn=='n'||yn=='N') { // 當輸入 n 或 N 時 
-                for(int i=0;i<9;i++){ //將 @ 換成 -    
+	        if (yn=='n'||yn=='N') { // If user enters 'n' or 'N'
+                for(int i=0;i<9;i++){ // Revert '@' to '-'.    
 		            for(int j=0;j<9;j++){
 			            if(seat[i][j]=='@'){
 				            seat[i][j] = '-';
@@ -231,11 +234,11 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 		            }
 	            }
 	        }
-            printf("\n按任意鍵返回主選單...\n");
+            printf("\nPress any key to return to the main menu . . . ");
             getch();
         }
-        
-        else if (choice=='c'||choice=='C') { // 當輸入 c 或 C 時 
+        //(5) Manual seat selection.  
+        else if (choice=='c'||choice=='C') { // If user enters 'c' or 'C'
             char a[71],b[71],c[71],d[71];
 	        int check=-1;
 	        
@@ -243,20 +246,20 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	        	int numa=0,numb=0,numc=0,numd=0;
 				check=0;
 	        	
-	        	for (int i=0;i<71;i++){ //初始化 a 陣列  
+	        	for (int i=0;i<71;i++){ // Initialize array a. 
 	                a[i]=0;
 	            } 
-	        	for (int i=0;i<71;i++){ //初始化 b 陣列   
+	        	for (int i=0;i<71;i++){ // Initialize array b. 
 	                b[i]=0;
 	            } 
-	            for (int i=0;i<71;i++){ //初始化 c 陣列   
+	            for (int i=0;i<71;i++){ // Initialize array c.  
 	                c[i]=0;
 	            } 
-	            for (int i=0;i<71;i++){ //初始化 d 陣列   
+	            for (int i=0;i<71;i++){ // Initialize array d.
 	                d[i]=0;
 	            } 
-	        	printf("\\ 1 2 3 4 5 6 7 8 9\n");
-	       	    for(int i=0;i<9;i++){ //印座位表給使用者挑選座位   
+	        	printf("\\ 1 2 3 4 5 6 7 8 9\n"); // Print seat map for user to choose seats. 
+	       	    for(int i=0;i<9;i++){  
 		            printf("%d ",9-i);
 			        for(int j=0;j<9;j++){
 			            printf("%c ",seat[i][j]);
@@ -264,80 +267,82 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 		            printf("\n");
 	            } 
 	            
-                printf("請輸入座位（先輸入列再輸入行，例如:8-7,6-9...）：");
-                for (int i=0;;i++){ 
-	
-	                a[i]=getche();
-	                numa++;
-	                if (a[i]==enter){
+                printf("Please enter seats (row first, then column, ex: 8-7,6-9...):");
+                for (int i=0;;i++){ // Input seat positions.
+	                
+					a[i]=getche();
+	                numa++; // Record how many times a was entered. 
+	                if (a[i]==enter){ // End input when 'enter' is pressed for a. 
 		                numa--;
 	     	            break;		
     	            }
 	
 	                b[i]=getche();
-	                numb++;
-	                if (b[i]==enter){
+	                numb++; // Record how many times b was entered.
+	                if (b[i]==enter){ // End input when 'enter' is pressed for b.
 		                numb--;
 		                break;		
             	    }
 	
 	                c[i]=getche();
-	                numc++;
-	                if (c[i]==enter){
+	                numc++; // Record how many times c was entered.
+	                if (c[i]==enter){ // End input when 'enter' is pressed for c.
 		                numc--;
 		                break;
     	            }
 	
 	                d[i]=getche();
-    	            numd++;
-	                if (d[i]==enter){
+    	            numd++; // Record how many times d was entered.
+	                if (d[i]==enter){ // End input when 'enter' is pressed for d.
 		                numd--;
 		                break;
 	                }
 	            }
                 printf("\n");
-	            for (int i=0;i<numa;i++){ 
+	            for (int i=0;i<numa;i++){ // Check if all elements in array a are between 1 and 9.  
 	                if (a[i]<'1'||a[i]>'9'){
 	    	            check++;
 		            }
 	            } 
-	            for (int i=0;i<numb;i++){ 
-	                if (b[i]!='-'){
+	            for (int i=0;i<numb;i++){ // Check if all elements in array b are '-'.
+	                if (b[i]!='-'){ 
 	    	            check++;
 		            }
           	    } 
-	            for (int i=0;i<numc;i++){ 
+	            for (int i=0;i<numc;i++){ // Check if all elements in array c are between 1 and 9.
 	                if (c[i]<'1'||c[i]>'9'){
 	    	            check++;
 		            }
                 } 
-	            for (int i=0;i<numd-1;i++){ 
+	            for (int i=0;i<numd-1;i++){ // Check if all elements in array d are ','.
      	            if (d[i]!=','){
 	    	            check++;
 		            }
 	            }
 	            
-	            if (check!=0||numa!=numb||numa!=numc||numa!=numd+1){
-		            printf("錯誤! 格式錯誤\n");
+	            if (check!=0||numa!=numb||numa!=numc||numa!=numd+1){ // If input format is invalid or the counts of a, b, c, d do not match (d needs +1 due to previously excluding final enter for printing).
+		            printf("Error! Invalid format!\n");
 		            check=-1;
-		            system("pause");
+		            printf("\nPress any key to re-enter . . . ");
+                    getch();
 		            system("cls");
-		            continue;
+		            continue; // Jump back to the while loop.
 	            }
 	            for (int i=0;i<numa;i++){ 
-	                if(seat[9-a[i]+'0'][c[i]-1-'0'] != '-'){
-	                	printf("錯誤! 重位\n");
+	                if(seat[9-a[i]+'0'][c[i]-1-'0'] != '-'){ // If the seat is not available.  
+	                	printf("Error! Seat already taken!\n");
 		                check=-1;
-		                for(int i=0;i<9;i++){ //將 @ 換回 -    
+		                for(int i=0;i<9;i++){ // Revert '@' to '-'.  
 		                    for(int j=0;j<9;j++){
 			                    if(seat[i][j]=='@'){
 				                    seat[i][j] = '-';
 			                    }
 		                    }
 	                    }
-		                system("pause");
+		                printf("\nPress any key to re-enter . . . ");
+                        getch();
 		                system("cls");
-		                break;
+		                break; // Break out of the for loop.
 					}
 		            else if(seat[9-a[i]+'0'][c[i]-1-'0'] == '-'){
 	                	seat[9-a[i]+'0'][c[i]-1-'0']='@';
@@ -345,8 +350,8 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	            } 
 	        }
             system("cls");
-            printf("\\ 1 2 3 4 5 6 7 8 9\n");
-	       	for(int i=0;i<9;i++){ //印座位表  
+            printf("\\ 1 2 3 4 5 6 7 8 9\n"); // Print the seat map after new seats are added. 
+	       	for(int i=0;i<9;i++){
 		        printf("%d ",9-i);
 			    for(int j=0;j<9;j++){
 			        printf("%c ",seat[i][j]);
@@ -355,7 +360,7 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	        } 
 	        
 	        
-            for(int i=0;i<9;i++){ //將 @ 換成 *   
+            for(int i=0;i<9;i++){ // Convert '@' to '*'.  
 		        for(int j=0;j<9;j++){
 			        if(seat[i][j]=='@'){
 				        seat[i][j] = '*';
@@ -363,26 +368,25 @@ printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 		        }
 	        }
 	        
-            printf("\n按任意鍵返回主選單...\n");
+            printf("\nPress any key to return to the main menu . . . ");
             getch();
         }
-        else if (choice=='d'||choice=='D') { // 當輸入 c 或 C 時 
+        //(6) Exit confirmation.
+        else if (choice=='d'||choice=='D') { // If user enters 'd' or 'D'
             char yn;
             printf("Continue? (y/n)：");
             scanf(" %c",&yn);
             
-            while(yn!='y'&&yn!='n'){ // 重複輸入直到是 y 或 n 
-            	printf("錯誤!\n請輸入 y 或 n\n\nContinue? (y/n)：");
+            while(yn!='y'&&yn!='n'){ // Repeat input until it is y or n.
+            	printf("Error!\nPlease enter y or n\n\nContinue? (y/n)：");
             	fflush(stdin);
                 scanf(" %c",&yn);
             }
 			 
-            if (yn=='n'||yn=='N') { // 當輸入 n 或 N 時 
-                printf("程式結束!\n");
-                break; // 跳出無窮迴圈  
+            if (yn=='n'||yn=='N') { // If user enters 'n' or 'N'
+                printf("Program terminated!\n");
+                break;  // Exit infinite loop.  
             } 
         }
     } 
-    
 }
-
