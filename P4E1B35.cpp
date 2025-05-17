@@ -127,23 +127,32 @@ void ccase(void){
 	getch();
 }
 void dcase(void){
-	float enter[10],change,min;
+	struct ddata{
+	    char dname[100];
+	    int dnum;
+	    float davg;
+	}dstudent[10];
+	struct ddata change;
 	for(int i=0;i<n;i++){ /*轉換 n 筆資料*/ 
-		enter[i]=student[i].avg;
+		strcpy(dstudent[i].dname,student[i].name);
+		dstudent[i].dnum=student[i].num;
+		dstudent[i].davg=student[i].avg;
 	}
 	
 	for(int i=0;i<n-1;i++){ /*比較 n 筆資料*/ 
-		min=enter[0];
-		for(int j=0;j<n-i;j++){
-			if(enter[j]<min){
-				change=enter[j];
-				enter[j]=enter[j+1];
-				enter[j+1]=enter[j];
+		for(int j=0;j<n-i-1;j++){
+			if(dstudent[j].davg<dstudent[j+1].davg){
+				change=dstudent[j];
+				dstudent[j]=dstudent[j+1];
+				dstudent[j+1]=change;
 			}
 		}
 	}
-	for(int i=0;i<n;i++){ /*轉換 n 筆資料*/ 
-		printf("第%d名:%3.1f",i+1,enter[i]);
+	for(int i=0;i<n;i++){ /*輸出 n 筆資料*/ 
+		printf("第%d名: 學生姓名:%s",i+1,dstudent[i].dname);
+		printf("  學號:%d",dstudent[i].dnum);
+		printf("  平均:%3.1f",dstudent[i].davg);
+		printf("\n");
 	}
 	printf("\n按下任意鍵回到主選單 . . . ");
 	getch();
