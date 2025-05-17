@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
-
+#include<string.h>
 struct data{
 	    char name[100];
 	    int num;
@@ -103,6 +103,29 @@ void bcase(void){
 	printf("\n按下任意鍵回到主選單 . . . ");
 	getch();
 }
+void ccase(void){
+	char findname[100];
+	int check=0;
+	printf("請輸入要搜尋的姓名:");
+	scanf("%s",&findname);
+	for(int i=0;i<n;i++){ /*尋找 n 筆資料*/ 
+		if(strcmp(findname,student[i].name)==0){
+			printf("學生姓名:%s",student[i].name);
+			printf("  學號:%d",student[i].num);
+			printf("  數學:%d",student[i].math);
+			printf("  物理:%d",student[i].physics);
+			printf("  英文:%d",student[i].english);
+			printf("  平均:%3.1f",student[i].avg);
+			check=1;
+			break;
+		}
+	}
+	if(check==0){
+		printf("查無此人");
+	}
+	printf("\n\n按下任意鍵回到主選單 . . . ");
+	getch();
+}
 int main(void){
 	while (1){
 		char chiose;
@@ -115,6 +138,9 @@ int main(void){
 	    }
 	    else if(chiose=='b'){
 		    bcase();
+	    }
+	    else if(chiose=='c'){
+		    ccase();
 	    }
 	}
 	
