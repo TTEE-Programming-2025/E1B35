@@ -112,9 +112,9 @@ void ccase(void){
 		if(strcmp(findname,student[i].name)==0){
 			printf("學生姓名:%s",student[i].name);
 			printf("  學號:%d",student[i].num);
-			printf("  數學:%d",student[i].math);
-			printf("  物理:%d",student[i].physics);
-			printf("  英文:%d",student[i].english);
+			printf("  數學:%3d",student[i].math);
+			printf("  物理:%3d",student[i].physics);
+			printf("  英文:%3d",student[i].english);
 			printf("  平均:%3.1f",student[i].avg);
 			check=1;
 			break;
@@ -124,6 +124,28 @@ void ccase(void){
 		printf("查無此人");
 	}
 	printf("\n\n按下任意鍵回到主選單 . . . ");
+	getch();
+}
+void dcase(void){
+	float enter[10],change,min;
+	for(int i=0;i<n;i++){ /*轉換 n 筆資料*/ 
+		enter[i]=student[i].avg;
+	}
+	
+	for(int i=0;i<n-1;i++){ /*比較 n 筆資料*/ 
+		min=enter[0];
+		for(int j=0;j<n-i;j++){
+			if(enter[j]<min){
+				change=enter[j];
+				enter[j]=enter[j+1];
+				enter[j+1]=enter[j];
+			}
+		}
+	}
+	for(int i=0;i<n;i++){ /*轉換 n 筆資料*/ 
+		printf("第%d名:%3.1f",i+1,enter[i]);
+	}
+	printf("\n按下任意鍵回到主選單 . . . ");
 	getch();
 }
 int main(void){
@@ -141,6 +163,9 @@ int main(void){
 	    }
 	    else if(chiose=='c'){
 		    ccase();
+	    }
+	    else if(chiose=='d'){
+		    dcase();
 	    }
 	}
 	
