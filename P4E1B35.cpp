@@ -8,6 +8,8 @@ struct data{
 	    int math;
 	    int physics;
 	    int english;
+	    float tot;
+	    float avg;
 	}student[10];
 int n;
 
@@ -82,23 +84,34 @@ void acase(void){
 			}
 			break;
 		}
+		student[i].tot=student[i].math+student[i].physics+student[i].english;
+		student[i].avg=(student[i].tot)/3;
 	}
 	printf("\n按下任意鍵回到主選單 . . . ");
 	getch();
 }
 void bcase(void){
-	for(int i=0;i<n;i++){ /*輸入 n 筆資料*/ 
-		printf("%s\n",student[i].name);
+	for(int i=0;i<n;i++){ /*輸出 n 筆資料*/ 
+		printf("學生姓名:%s",student[i].name);
+		printf("  學號:%d",student[i].num);
+		printf("  數學:%d",student[i].math);
+		printf("  物理:%d",student[i].physics);
+		printf("  英文:%d",student[i].english);
+		printf("  平均:%3.1f",student[i].avg);
+		printf("\n");
 	}
+	printf("\n按下任意鍵回到主選單 . . . ");
+	getch();
 }
 int main(void){
 	while (1){
 		char chiose;
+		system("cls");
 	    printf("請輸入效果:");
 	    scanf(" %c",&chiose);
+	    system("cls");
 	    if(chiose=='a'){
 		    acase();
-		    system("cls");
 	    }
 	    else if(chiose=='b'){
 		    bcase();
