@@ -12,7 +12,7 @@ struct data{
 	    float avg;
 	}student[10];
 int n;
-
+char yn;
 void acase(void){
 	while(1){ /*輸入 n 值，以及判斷是否為 5~10*/ 
 		system("cls");
@@ -157,6 +157,27 @@ void dcase(void){
 	printf("\n按下任意鍵回到主選單 . . . ");
 	getch();
 }
+
+void ecase(void){
+    printf("確定離開？(y/n)：");
+    scanf(" %c",&yn);
+            
+    while(yn!='y'&&yn!='n'){ // 重複輸入直到是 y 或 n 
+        printf("錯誤!\n請輸入 y 或 n\n\nContinue? (y/n)：");
+        fflush(stdin);
+        scanf(" %c",&yn);
+    }
+			 
+    if (yn=='y'||yn=='Y') { // 當輸入 y 或 Y 時  
+        printf("程式結束!\n");
+    }
+    else if (yn=='n'||yn=='N') { // 當輸入 n 或 N 時  
+        printf("\n按下任意鍵回到主選單 . . . ");
+        getch();
+    }
+}
+
+
 int main(void){
 	while (1){
 		char chiose;
@@ -176,6 +197,11 @@ int main(void){
 	    else if(chiose=='d'){
 		    dcase();
 	    }
+	    else if(chiose=='e'){
+		    ecase();
+		    if (yn=='y'||yn=='Y') { // 當輸入 y 或 Y 時  
+                return 0;
+            }
+	    }
 	}
-	
 }
