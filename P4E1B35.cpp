@@ -92,12 +92,12 @@ void acase(void){
 }
 void bcase(void){
 	for(int i=0;i<n;i++){ /* 輸出 n 筆資料 */ 
-		printf("學生姓名:%s",student[i].name);
+		printf("學生姓名:%8s",student[i].name);
 		printf("  學號:%d",student[i].num);
-		printf("  數學:%d",student[i].math);
-		printf("  物理:%d",student[i].physics);
-		printf("  英文:%d",student[i].english);
-		printf("  平均:%3.1f",student[i].avg);
+		printf("  數學:%3d",student[i].math);
+		printf("  物理:%3d",student[i].physics);
+		printf("  英文:%3d",student[i].english);
+		printf("  平均:%5.1f",student[i].avg);
 		printf("\n");
 	}
 	printf("\n按下任意鍵回到主選單 . . . ");
@@ -110,12 +110,12 @@ void ccase(void){
 	scanf("%s",&findname);
 	for(int i=0;i<n;i++){ /* 尋找 n 筆資料 */ 
 		if(strcmp(findname,student[i].name)==0){
-			printf("學生姓名:%s",student[i].name);
+			printf("學生姓名:%8s",student[i].name);
 			printf("  學號:%d",student[i].num);
 			printf("  數學:%3d",student[i].math);
 			printf("  物理:%3d",student[i].physics);
 			printf("  英文:%3d",student[i].english);
-			printf("  平均:%3.1f",student[i].avg);
+			printf("  平均:%5.1f",student[i].avg);
 			check=1;
 			break;
 		}
@@ -149,9 +149,9 @@ void dcase(void){
 		}
 	}
 	for(int i=0;i<n;i++){ /* 輸出 n 筆資料 */ 
-		printf("第%d名: 學生姓名:%s",i+1,dstudent[i].dname);
+		printf("第%d名: 學生姓名:%8s",i+1,dstudent[i].dname);
 		printf("  學號:%d",dstudent[i].dnum);
-		printf("  平均:%3.1f",dstudent[i].davg);
+		printf("  平均:%5.1f",dstudent[i].davg);
 		printf("\n");
 	}
 	printf("\n按下任意鍵回到主選單 . . . ");
